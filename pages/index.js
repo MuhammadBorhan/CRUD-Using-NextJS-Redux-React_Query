@@ -1,6 +1,7 @@
 import Head from "next/head";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Form from "../components/Form";
+import Table from "../components/Table";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
         <h1 className="text-xl font-bold md:text-4xl text-center py-5">
           Employee Management
         </h1>
-        <div className="container py-4 mx-auto border-b">
+        <div className="container py-4 mx-auto border-b flex justify-center lg:justify-start">
           <button className="py-2 px-4 rounded-sm text-white bg-blue-500 flex items-center gap-1 hover:text-gray-300">
             <span>Add Employee</span>
             <span>
@@ -26,8 +27,12 @@ export default function Home() {
         </div>
 
         {/* form section */}
-        <div className="py-5">
+        <div className="py-5 border-b">
           <Form />
+        </div>
+
+        <div className="py-5">
+          <Table />
         </div>
       </main>
     </section>
