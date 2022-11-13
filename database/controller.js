@@ -14,7 +14,6 @@ export async function getUsers(req, res) {
 }
 
 /* POST Request--> http://localhost:3000/api/users */
-
 export async function createUser(req, res) {
   try {
     const formData = req.body;
@@ -26,5 +25,22 @@ export async function createUser(req, res) {
     });
   } catch (error) {
     return res.status(404).json({ error });
+  }
+}
+
+/* PUT Request--> http://localhost:3000/api/users/userId */
+export async function updateUser(req, res) {
+  try {
+    const { userId } = req.query;
+    const formData = req.body;
+    if (userId && formData) {
+      const user = await Users.findByIdAndUpdate(userId, formData);
+      res.status(200).json(user);
+    }
+    res.status(404).json({ error: "User not selected.." });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ error: "Error while updating the data...!!" });
   }
 }
