@@ -2,8 +2,10 @@ import Head from "next/head";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Form from "../components/Form";
 import Table from "../components/Table";
+import { useState } from "react";
 
 export default function Home() {
+  const [visible, setVisible] = useState(false);
   return (
     <section>
       <Head>
@@ -17,7 +19,10 @@ export default function Home() {
           Employee Management
         </h1>
         <div className="container py-4 mx-auto border-b flex justify-center lg:justify-start">
-          <button className="py-2 px-4 rounded-sm text-white bg-blue-500 flex items-center gap-1 hover:text-gray-300">
+          <button
+            onClick={() => setVisible(!visible)}
+            className="py-2 px-4 rounded-sm text-white bg-blue-500 flex items-center gap-1 hover:text-gray-300"
+          >
             <span>Add Employee</span>
             <span>
               {" "}
@@ -27,9 +32,7 @@ export default function Home() {
         </div>
 
         {/* form section */}
-        <div className="py-5 border-b">
-          <Form />
-        </div>
+        {visible ? <Form /> : <></>}
 
         <div className="py-5">
           <Table />
