@@ -44,3 +44,20 @@ export async function updateUser(req, res) {
       .json({ error: "Error while updating the data...!!" });
   }
 }
+
+/* DELETE Request--> http://localhost:3000/api/users/userId */
+
+export async function deleteUser(req, res) {
+  try {
+    const { userId } = req.query;
+    if (userId) {
+      const user = await Users.findByIdAndDelete(userId);
+      res.status(200).json({ deleted: user });
+    }
+    return res.status(404).json({ error: "User not selected..." });
+  } catch (error) {
+    return res
+      .status(404)
+      .json({ error: "Error while deleting the data...!!" });
+  }
+}
