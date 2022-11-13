@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Borhan",
+    "img": "https://randomuser.me/api/portraits/men/16.jpg",
+    "email": "borhan@gmail.com",
+    "salary": "20,000",
+    "date": "15-08-1995",
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "name": "Shaon",
+    "img": "https://randomuser.me/api/portraits/men/3.jpg",
+    "email": "shaon@gmail.com",
+    "salary": "2,000",
+    "date": "13-11-2022",
+    "status": "Inctive"
+  },
+  {
+    "id": 3,
+    "name": "Atik",
+    "img": "https://randomuser.me/api/portraits/men/25.jpg",
+    "email": "atik@gmail.com",
+    "salary": "22,000",
+    "date": "13-11-2022",
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "name": "Nazmul",
+    "img": "https://randomuser.me/api/portraits/men/52.jpg",
+    "email": "nazmul@gmail.com",
+    "salary": "27,000",
+    "date": "13-11-2022",
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "name": "Junayed",
+    "img": "https://randomuser.me/api/portraits/men/57.jpg",
+    "email": "junayed@gmail.com",
+    "salary": "10,000",
+    "date": "13-11-2022",
+    "status": "Inctive"
+  }
+]
