@@ -1,14 +1,12 @@
 // import data from "../database/data.json";
 import { Delete, Edit } from "@mui/icons-material";
 import { useQuery } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "../lib/helper";
+import { toggleChangeAction } from "../redux/reducer";
 // import EditIcon from '@mui/icons-material/Edit';
 
 const Table = () => {
-  const state = useSelector((state) => state);
-  console.log(state);
-
   const { isLoading, isError, data, error } = useQuery("users", getAllUser);
 
   if (isLoading) {
@@ -47,6 +45,12 @@ const Table = () => {
 export default Table;
 
 function Tr({ id, img, name, email, salary, date, status }) {
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+  const handleUpdate = () => {
+    dispatch(toggleChangeAction());
+    console.log(visible);
+  };
   return (
     <tr>
       <td className="flex justify-center">
@@ -64,7 +68,10 @@ function Tr({ id, img, name, email, salary, date, status }) {
         {status}
       </td>
       <td className="flex gap-x-5">
-        <span className="text-green-500 font-bold cursor-pointer flex items-center justify-center">
+        <span
+          onClick={handleUpdate}
+          className="text-green-500 font-bold cursor-pointer flex items-center justify-center"
+        >
           {" "}
           <Edit />{" "}
         </span>
