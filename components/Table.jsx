@@ -1,14 +1,22 @@
 // import data from "../database/data.json";
 import { Delete, Edit } from "@mui/icons-material";
 import { useQuery } from "react-query";
+import { useSelector } from "react-redux";
 import { getAllUser } from "../lib/helper";
 // import EditIcon from '@mui/icons-material/Edit';
 
 const Table = () => {
+  const state = useSelector((state) => state);
+  console.log(state);
+
   const { isLoading, isError, data, error } = useQuery("users", getAllUser);
 
   if (isLoading) {
-    return <h1>Employee Loading...</h1>;
+    return (
+      <h1 className="text-center py-5 text-3xl text-red-500">
+        Employee Loading...
+      </h1>
+    );
   } else if (isError) {
     return <p>Got Error {error}</p>;
   }
