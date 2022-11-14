@@ -1,6 +1,8 @@
 // import data from "../database/data.json";
+import { Delete, Edit } from "@mui/icons-material";
 import { useQuery } from "react-query";
 import { getAllUser } from "../lib/helper";
+// import EditIcon from '@mui/icons-material/Edit';
 
 const Table = () => {
   const { isLoading, isError, data, error } = useQuery("users", getAllUser);
@@ -53,7 +55,16 @@ function Tr({ id, img, name, email, salary, date, status }) {
       >
         {status}
       </td>
-      <td>Actions</td>
+      <td className="flex gap-x-5">
+        <span className="text-green-500 font-bold cursor-pointer flex items-center justify-center">
+          {" "}
+          <Edit />{" "}
+        </span>
+        <span className="text-red-500 font-bold cursor-pointer flex items-center justify-center">
+          {" "}
+          <Delete />{" "}
+        </span>
+      </td>
     </tr>
   );
 }
