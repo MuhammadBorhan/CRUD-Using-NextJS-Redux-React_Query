@@ -4,7 +4,7 @@ const usersSchema = new Schema({
   name: String,
   img: String,
   email: String,
-  salary: String,
+  salary: Number,
   date: String,
   status: String,
 });
