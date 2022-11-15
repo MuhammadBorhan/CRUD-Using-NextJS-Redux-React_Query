@@ -40,7 +40,7 @@ export default function Home() {
         <h1 className="text-xl font-bold md:text-4xl text-center py-5">
           Employee Management
         </h1>
-        <div className="container py-4 mx-auto border-b flex justify-between sticky top-0 z-50">
+        <div className="container py-4 mx-auto border-b flex md:justify-between justify-center sticky top-0 z-50 bg-black px-6 flex-col md:flex-row gap-y-4">
           <button
             onClick={handleClick}
             className="py-2 px-4 rounded-sm text-white bg-blue-500 flex items-center gap-1 hover:text-gray-300"
@@ -51,7 +51,9 @@ export default function Home() {
               <PersonAddAltOutlinedIcon />{" "}
             </span>
           </button>
-          {deleteId ? deleteFunction({ handleDelete, handleCancle }) : <></>}
+          <div className="flex justify-center">
+            {deleteId ? deleteFunction({ handleDelete, handleCancle }) : <></>}
+          </div>
         </div>
 
         {/* form section */}
