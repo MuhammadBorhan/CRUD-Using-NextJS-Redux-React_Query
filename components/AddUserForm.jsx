@@ -5,17 +5,17 @@ import Bug from "./Bug";
 import { useMutation, useQueryClient } from "react-query";
 import { createUser, getAllUser } from "../lib/helper";
 
-const formReducer = (state, event) => {
+/* const formReducer = (state, event) => {
   return {
     ...state,
     [event.target.name]: event.target.value,
   };
 };
-
-const AddUserForm = () => {
+ */
+const AddUserForm = ({ formData, setFormData }) => {
   const queryClient = useQueryClient();
 
-  const [formData, setFormData] = useReducer(formReducer, {});
+  // const [formData, setFormData] = useReducer(formReducer, {});
 
   const addMutation = useMutation(createUser, {
     onSuccess: () => {
@@ -38,7 +38,7 @@ const AddUserForm = () => {
       email,
       salary,
       date,
-      status: status ?? "Inactive",
+      status: status ?? "Active",
     };
     addMutation.mutate(model);
   };

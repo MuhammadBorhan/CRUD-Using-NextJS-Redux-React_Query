@@ -2,10 +2,15 @@ import Head from "next/head";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Form from "../components/Form";
 import Table from "../components/Table";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleChangeAction } from "../redux/reducer";
 
 export default function Home() {
-  const [visible, setVisible] = useState(false);
+  const visible = useSelector((state) => state.app.client.toggleForm);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(toggleChangeAction());
+  };
   return (
     <section>
       <Head>
@@ -20,10 +25,10 @@ export default function Home() {
         </h1>
         <div className="container py-4 mx-auto border-b flex justify-center lg:justify-start">
           <button
-            onClick={() => setVisible(!visible)}
+            onClick={handleClick}
             className="py-2 px-4 rounded-sm text-white bg-blue-500 flex items-center gap-1 hover:text-gray-300"
           >
-            <span>Add Employee</span>
+            Add Employee
             <span>
               {" "}
               <PersonAddAltOutlinedIcon />{" "}
