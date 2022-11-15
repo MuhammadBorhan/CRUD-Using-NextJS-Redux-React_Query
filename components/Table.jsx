@@ -3,7 +3,11 @@ import { Delete, Edit } from "@mui/icons-material";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUser } from "../lib/helper";
-import { toggleChangeAction, updateAction } from "../redux/reducer";
+import {
+  deleteAction,
+  toggleChangeAction,
+  updateAction,
+} from "../redux/reducer";
 // import EditIcon from '@mui/icons-material/Edit';
 
 const Table = () => {
@@ -53,6 +57,12 @@ function Tr({ _id, img, name, email, salary, date, status }) {
       dispatch(updateAction(_id));
     }
   };
+
+  const handleDelete = () => {
+    if (!visible) {
+      dispatch(deleteAction(_id));
+    }
+  };
   return (
     <tr>
       <td className="flex justify-center">
@@ -77,7 +87,10 @@ function Tr({ _id, img, name, email, salary, date, status }) {
           {" "}
           <Edit />{" "}
         </button>
-        <button className="text-red-500 font-bold cursor-pointer flex items-center justify-center">
+        <button
+          onClick={handleDelete}
+          className="text-red-500 font-bold cursor-pointer flex items-center justify-center"
+        >
           {" "}
           <Delete />{" "}
         </button>
