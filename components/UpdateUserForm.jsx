@@ -2,8 +2,8 @@ import { useReducer } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import Success from "./Success";
 import Bug from "./Bug";
-import { useQuery } from "react-query";
-import { getSingleUser } from "../lib/helper";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getAllUser, getSingleUser, updateUser } from "../lib/helper";
 
 /* const formReducer = (state, event) => {
   return {
@@ -13,8 +13,17 @@ import { getSingleUser } from "../lib/helper";
 }; */
 
 const UpdateUserForm = ({ formId, formData, setFormData }) => {
+  const queryClient = useQueryClient();
   const { isLoading, isError, data, error } = useQuery(["users", formId], () =>
     getSingleUser(formId)
+  );
+  const UpdatedMutation = useMutation(
+    (newData) => updateUser(formId, newData),
+    {
+      onSuccess: async (data) => {
+        queryClient.prefetchQuery("users", getAllUser);
+      },
+    }
   );
   console.log(data);
   if (isLoading) return <div>Loading...</div>;
@@ -22,17 +31,18 @@ const UpdateUserForm = ({ formId, formData, setFormData }) => {
   const { name, img, salary, date, email, status } = data;
   const [firstname, lastname] = name ? name.split(" ") : formData;
   // const [formData, setFormData] = useReducer(formReducer, {});
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (Object.keys(formData).length === 0) {
-      return console.log("Don't have form data");
-    }
-    console.log(formData);
-  };
 
-  //   if (Object.keys(formData).length > 0) {
-  //     return <Success message="Success" />;
-  //   }
+    let userName = `${formData.firstname ?? firstname} ${
+      formData.lastname ?? lastname
+    }`;
+    let updated = Object.assign({}, data, formData, { name: userName });
+    await UpdatedMutation.mutate(updated);
+
+    //   if (Object.keys(formData).length > 0) {
+    //     return <Success message="Success" />;
+  };
   return (
     <div className="flex justify-center">
       <form className="grid lg:grid-cols-2 gap-3" onSubmit={handleSubmit}>
